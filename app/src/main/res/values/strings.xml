@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PhotoGallery</string>
+    <string name="general_error">Unable to fetch new data</string>
 </resources>
