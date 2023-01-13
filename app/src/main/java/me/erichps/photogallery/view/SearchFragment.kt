@@ -47,11 +47,12 @@ class SearchFragment : Fragment() {
                 viewModel.loadMoreData()
             }
 
-
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
-                    viewModel.searchPhoto(query)
+                    viewModel.searchPhoto(query, 1)
                     searchView.clearFocus()
+                    adapter.clearAll()
+                    progressBar.show()
                     return true
                 }
 
@@ -63,9 +64,12 @@ class SearchFragment : Fragment() {
     private fun setupObserver() {
         viewModel.apply {
             photos.observe(viewLifecycleOwner) {
+                binding?.progressBar?.hide()
                 adapter.addPhotos(it)
+                binding?.emptySign?.visibility = if (adapter.itemCount > 0) View.GONE else View.VISIBLE
             }
             errorMessage.observe(viewLifecycleOwner) {
+                binding?.progressBar?.hide()
                 Toast.makeText(this@SearchFragment.requireContext(),getString(R.string.search_error), Toast.LENGTH_SHORT).show()
             }
         }

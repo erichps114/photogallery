@@ -1,11 +1,8 @@
 package me.erichps.photogallery.di
 
-import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import me.erichps.photogallery.BuildConfig
 import me.erichps.photogallery.data.api.UnsplashApi
@@ -34,21 +31,13 @@ object ApiModule {
     @Provides
     fun provideOkHttpClient(
         interceptor: Interceptor,
-        loggingInterceptor: HttpLoggingInterceptor,
-        chuckerInterceptor: ChuckerInterceptor): OkHttpClient {
+        loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(interceptor)
             .addNetworkInterceptor(loggingInterceptor)
-            .addInterceptor(chuckerInterceptor)
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
             .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideChuckerInterceptor(@ApplicationContext context: Context): ChuckerInterceptor {
-        return ChuckerInterceptor.Builder(context).build()
     }
 
     @Provides

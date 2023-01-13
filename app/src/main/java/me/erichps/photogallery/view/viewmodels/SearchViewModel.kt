@@ -29,15 +29,15 @@ class SearchViewModel @Inject constructor(
     private var currentQuery = ""
 
 
-    fun searchPhoto(query: String?) {
+    fun searchPhoto(query: String?, pageNo: Int) {
         viewModelScope.launch(dispatcherIO) {
             if (!query.isNullOrBlank()) {
                 currentQuery = query
-                searchPhotos(page, query).collect {
+                searchPhotos(pageNo, query).collect {
                     when (it) {
                         is Result.Success -> {
                             _photos.postValue(it.data)
-                            page++
+                            page = pageNo.plus(1)
                         }
                         else -> _errorMessage.postValue("")
                     }
@@ -48,5 +48,5 @@ class SearchViewModel @Inject constructor(
         }
     }
 
-    fun loadMoreData() = searchPhoto(currentQuery)
+    fun loadMoreData() = searchPhoto(currentQuery, page)
 }

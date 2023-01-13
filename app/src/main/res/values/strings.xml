@@ -4,8 +4,8 @@
     <string name="navigation_home">Home</string>
     <string name="navigation_search">Search</string>
     <string name="navigation_info">About</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
     <string name="search_error">No more data to load</string>
+    <string name="sort_button">Layout</string>
+    <string name="no_result">No Data to be Displayed</string>
 </resources>
