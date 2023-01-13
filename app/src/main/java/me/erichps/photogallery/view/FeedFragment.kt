@@ -22,7 +22,6 @@ class FeedFragment : Fragment() {
 
     private var binding: FragmentFeedBinding? = null
     private val viewModel: FeedViewModel by viewModels()
-    private var page = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,11 +45,11 @@ class FeedFragment : Fragment() {
 
     private fun setupUI() {
         binding?.apply {
-            photoList.layoutManager = LinearLayoutManager(this@FeedFragment.requireContext())
+            photoList.layoutManager = LinearLayoutManager(requireContext())
             photoList.adapter = adapter
             refresh.setOnRefreshListener {
                 adapter.clearAll()
-                page=1
+                viewModel.refresh()
                 fetchPhotos()
             }
         }

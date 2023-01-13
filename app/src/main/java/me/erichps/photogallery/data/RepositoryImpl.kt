@@ -21,4 +21,13 @@ class RepositoryImpl @Inject constructor (
             emit(Result.Error(e.message?:""))
         }
     }
+
+    override suspend fun searchPhotos(page: Int, query: String): Flow<Result<List<Photo>>> {
+        return flow<Result<List<Photo>>> {
+            val photos = remoteDataSource.searchPhotos(page, query)
+            emit(Result.Success(photos.results))
+        }.catch { e->
+            emit(Result.Error(e.message?:""))
+        }
+    }
 }

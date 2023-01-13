@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 import me.erichps.photogallery.di.IODispatcher
 import me.erichps.photogallery.domain.model.Photo
 import me.erichps.photogallery.domain.model.Result
-import me.erichps.photogallery.domain.usecase.GetRandomPhotos
+import me.erichps.photogallery.domain.usecase.SearchPhotos
 import javax.inject.Inject
 
 @HiltViewModel
-class FeedViewModel @Inject constructor(
-    private val getRandomPhotos: GetRandomPhotos,
+class SearchViewModel @Inject constructor(
+    private val searchPhotos: SearchPhotos,
     @IODispatcher private val dispatcherIO: CoroutineDispatcher
 ): ViewModel() {
 
@@ -26,21 +26,27 @@ class FeedViewModel @Inject constructor(
     val errorMessage: LiveData<String> = _errorMessage
 
     private var page = 1
+    private var currentQuery = ""
 
 
-    fun getPhoto() {
+    fun searchPhoto(query: String?) {
         viewModelScope.launch(dispatcherIO) {
-            getRandomPhotos(page).collect {
-                when (it) {
-                    is Result.Success -> {
-                        _photos.postValue(it.data)
-                        page++
+            if (!query.isNullOrBlank()) {
+                currentQuery = query
+                searchPhotos(page, query).collect {
+                    when (it) {
+                        is Result.Success -> {
+                            _photos.postValue(it.data)
+                            page++
+                        }
+                        else -> _errorMessage.postValue("")
                     }
-                    else -> _errorMessage.postValue("")
                 }
+            } else {
+                _errorMessage.postValue("")
             }
         }
     }
 
-    fun refresh() { page = 1 }
+    fun loadMoreData() = searchPhoto(currentQuery)
 }

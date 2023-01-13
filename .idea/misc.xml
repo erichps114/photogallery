@@ -3,15 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/activity_main.xml" value="0.14175724637681159" />
-        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/item_photo_list.xml" value="0.25" />
+        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
+        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/fragment_feed.xml" value="0.209375" />
+        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/fragment_search.xml" value="0.209375" />
+        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/menu/bottom_nav_menu.xml" value="0.209375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
-  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

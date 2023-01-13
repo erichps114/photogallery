@@ -6,4 +6,6 @@
     <string name="navigation_info">About</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search">Search</string>
+    <string name="search_error">No more data to load</string>
 </resources>
