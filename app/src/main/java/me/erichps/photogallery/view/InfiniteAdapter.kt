@@ -44,8 +44,9 @@ class InfiniteAdapter @Inject constructor(): RecyclerView.Adapter<InfiniteAdapte
 
     fun addPhotos(list: List<Photo>) {
         val lastIndex = photos.size
-        photos.addAll(list)
-        notifyItemRangeInserted(lastIndex, list.size)
+        val newPhoto = list.filter { !photos.contains(it) }
+        photos.addAll(newPhoto)
+        notifyItemRangeInserted(lastIndex, newPhoto.size)
     }
 
     fun clearAll() {

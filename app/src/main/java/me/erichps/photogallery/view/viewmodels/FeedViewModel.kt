@@ -1,4 +1,4 @@
-package me.erichps.photogallery.view
+package me.erichps.photogallery.view.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -14,7 +14,7 @@ import me.erichps.photogallery.domain.usecase.GetRandomPhotos
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class FeedViewModel @Inject constructor(
     private val getRandomPhotos: GetRandomPhotos,
     @IODispatcher private val dispatcherIO: CoroutineDispatcher
 ): ViewModel() {
@@ -25,12 +25,17 @@ class MainViewModel @Inject constructor(
     private val _errorMessage = MutableLiveData<String>()
     val errorMessage: LiveData<String> = _errorMessage
 
+    private var page = 1
 
-    fun getPhoto(page: Int) {
+
+    fun getPhoto() {
         viewModelScope.launch(dispatcherIO) {
             getRandomPhotos(page).collect {
                 when (it) {
-                    is Result.Success -> { _photos.postValue(it.data) }
+                    is Result.Success -> {
+                        _photos.postValue(it.data)
+                        page++
+                    }
                     else -> _errorMessage.postValue("")
                 }
             }
