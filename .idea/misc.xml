@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/activity_main.xml" value="0.13269927536231885" />
+        <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/fragment_about.xml" value="0.209375" />
         <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/fragment_feed.xml" value="0.209375" />
         <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/layout/fragment_search.xml" value="0.209375" />
         <entry key="..\:/Users/erc/AndroidStudioProjects/PhotoGallery/app/src/main/res/menu/bottom_nav_menu.xml" value="0.209375" />
