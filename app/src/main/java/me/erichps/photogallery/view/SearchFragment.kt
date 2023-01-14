@@ -42,11 +42,7 @@ class SearchFragment : Fragment() {
     private fun setupUI() {
         binding?.apply {
             searchResult.layoutManager = LinearLayoutManager(requireContext())
-            searchResult.adapter = adapter
-            adapter.onLoadMore = {
-                viewModel.loadMoreData()
-            }
-
+            searchResult.adapter = adapter.apply { onLoadMore = { viewModel.loadMoreData() } }
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     viewModel.searchPhoto(query, 1)

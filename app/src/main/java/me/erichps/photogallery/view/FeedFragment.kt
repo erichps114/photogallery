@@ -47,7 +47,7 @@ class FeedFragment : Fragment() {
     private fun setupUI() {
         binding?.apply {
             photoList.layoutManager = LinearLayoutManager(requireContext())
-            photoList.adapter = adapter
+            photoList.adapter = adapter.apply { onLoadMore = { fetchPhotos() } }
             refresh.setOnRefreshListener {
                 adapter.clearAll()
                 viewModel.refresh()
@@ -60,9 +60,6 @@ class FeedFragment : Fragment() {
                     photoList.layoutManager = GridLayoutManager(requireContext(),2)
                 }
             }
-        }
-        adapter.onLoadMore = {
-            fetchPhotos()
         }
     }
 
